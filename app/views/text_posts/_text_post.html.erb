@@ -15,7 +15,7 @@
     <%= text_post.content %>
     <br />
     
-    <%= link_to("#{time_ago_in_words text_post.created_at} ago", post_path(text_post)) %>
+    <%= link_to "#{time_ago_in_words text_post.created_at} ago", post_path(text_post) %>
     
   </div>
 </div>

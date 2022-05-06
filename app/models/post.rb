@@ -19,8 +19,10 @@ class Post < ApplicationRecord
   
   #associations
   belongs_to :user
+  has_many :comments, dependent: :destroy
 
    #validations
    validates :user_id, presence: true 
    validates :type, presence: true
+   
 end

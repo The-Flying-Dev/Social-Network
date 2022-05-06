@@ -34,7 +34,7 @@ class User < ApplicationRecord
   has_many :image_posts, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  validates :email, presence :true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
   
   #returns true/false if the current user is following another user
 
@@ -50,4 +50,11 @@ class User < ApplicationRecord
       subscribers << subscriber
     end
   end
+
+
+  def timeline_user_ids
+    
+    subscriber_ids + [id]
+  end
+
 end

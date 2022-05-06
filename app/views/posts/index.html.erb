@@ -1,0 +1,9 @@
+<div class="all_posts">
+  
+  <h1>Posts</h1>
+
+  <p><%= link_to "New Text Post", new_text_post_path, class: "btn btn-dedault" %></p>
+  <p><%= link_to "New Image Post", new_image_post_path, class: "btn btn-dedault" %></p>
+
+ <%= render @posts %>
+</div>
