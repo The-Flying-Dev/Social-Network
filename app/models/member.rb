@@ -14,6 +14,8 @@
 #  index_members_on_subscriber_id  (subscriber_id)
 #
 class Member < ApplicationRecord
+
+  #associations
   belongs_to :subscriber, class_name: "User"
   belongs_to :follower, class_name: "User"
 end

@@ -2,14 +2,16 @@
 #
 # Table name: users
 #
-#  id         :integer          not null, primary key
-#  email      :string
-#  name       :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id              :integer          not null, primary key
+#  email           :string
+#  name            :string
+#  password_digest :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 class User < ApplicationRecord
 
+  has_secure_password #bcrypt
 
     ########  Members/followers and following 
   
@@ -31,6 +33,8 @@ class User < ApplicationRecord
   has_many :text_posts, dependent: :destroy
   has_many :image_posts, dependent: :destroy
   has_many :comments, dependent: :destroy
+
+  validates :email, presence :true, uniqueness: true
   
   #returns true/false if the current user is following another user
 

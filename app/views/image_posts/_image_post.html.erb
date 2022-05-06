@@ -1,0 +1,17 @@
+div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      <%= image_post.title %>
+    </h3>
+    
+  </div>
+
+  <div class="panel-body">
+    <p><em>By <%= link_to image_post.user.name, image_post.user %></em></p>
+
+    <%= image_tag image_post.url, class: "img-responsive" %>
+    <%= image_post.content %>
+    <br />
+    <%= link_to("#{time_ago_in_words image_post.created_at} ago", post_path(image_post)) %>
+ </div>
+</div>

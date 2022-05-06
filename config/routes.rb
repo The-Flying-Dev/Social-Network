@@ -4,5 +4,9 @@ Rails.application.routes.draw do
   resources :text_posts
   resources :posts
   resources :users
+
+  get 'signup', to: 'users#new', as: 'signup'
+
+  root 'posts#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
