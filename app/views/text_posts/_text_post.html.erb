@@ -16,6 +16,11 @@
     <br />
     
     <%= link_to "#{time_ago_in_words text_post.created_at} ago", post_path(text_post) %>
+
+    <% if text_post.user == current_user %>
+      <%= link_to "Edit", edit_text_post_path(text_post), class: "btn btn-default" %>
+    <%end %>
+
     
   </div>
 </div>

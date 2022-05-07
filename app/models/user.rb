@@ -23,7 +23,7 @@ class User < ApplicationRecord
 
   #other users following the current user
 
-  has_many :reverse_members, foreign_key: :subscriber_id, class_name: "Member", dependent: :destroy 
+  has_many :reverse_members, foreign_key: :subscriber_id, class_name: 'Member', dependent: :destroy 
   has_many :followers, through: :reverse_members
 
   #associations
@@ -45,7 +45,7 @@ class User < ApplicationRecord
   #action to indicate that the current user is following another user
 
   def follow!(subscriber)
-    
+    #subscribers = []
     if subscriber != self && !following?(subscriber)
       subscribers << subscriber
     end

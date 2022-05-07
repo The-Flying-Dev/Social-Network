@@ -17,6 +17,23 @@ class TextPostsController < ApplicationController
     end
   end
 
+
+  def edit 
+    @text_post = current_user.text_posts.find(params[:id])
+  end
+
+  def update 
+    @text_post = current_user.text_posts.find(params[:id])
+    if @text_post.update(text_post_params)
+        redirect_to post_path(@text_post), notice: "Post successfully updated"
+    else 
+      render :edit, alert: "There was an error updating your post, try again?"
+    end
+  end
+
+
+  private 
+
   def text_post_params
     params.require(:text_post).permit(:title, :content)
   end
