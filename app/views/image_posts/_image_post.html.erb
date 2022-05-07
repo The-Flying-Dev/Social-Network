@@ -1,4 +1,4 @@
-<% cache image_post do %>
+<%# cache image_post do %>
 
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -14,15 +14,16 @@
       <%= image_tag image_post.url, class: "img-responsive" %>
       <%= sanitize image_post.content %>
       <br />
-      <%= pluralize text_post.cached_comment_count, "Comment" %>
+      <%# pluralize image_posts.cached_comment_count, "Comment" %>
       
       <%= link_to "#{time_ago_in_words image_post.created_at} ago", post_path(image_post) %>
      
       
     </div>
   </div>
-<% end %>
+<%# end %>
 
 <% if image_post.user == current_user %>
-  <%= link_to "Edit", edit_image_post_path(image_post), class: "btn btn-default" %>
+  <%= link_to "Edit Post", edit_image_post_path(image_post), class: "btn btn-default" %>
+  <%= link_to "Remove Post", image_post_path(image_post), method: :delete, class: "btn btn-default" %>
 <%end %>

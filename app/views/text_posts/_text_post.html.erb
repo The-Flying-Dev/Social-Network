@@ -1,4 +1,4 @@
-<% cache text_post do %>
+<%# cache text_post do %>
 
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -13,15 +13,16 @@
 
       <%= sanitize text_post.content %>
       <br />
-      <%= pluralize text_post.cached_comment_count "Comment" %>
+      <%# pluralize text_post.cached_comment_count "Comment" %>
 
       <%= link_to "#{time_ago_in_words text_post.created_at} ago", post_path(text_post) %>      
 
       
     </div>
   </div>
-<% end %>
+<%# end %>
 
 <% if text_post.user == current_user %>
   <%= link_to "Edit", edit_text_post_path(text_post), class: "btn btn-default" %>
+  <%= link_to "Remove Post", text_post_path(text_post), method: :delete, class: "btn btn-default" %>
 <% end %>

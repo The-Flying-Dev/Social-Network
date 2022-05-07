@@ -1,5 +1,6 @@
 class TextPostsController < ApplicationController
   before_action :authenticate_user!
+  #before_action :text_post_owner, only: [:edit, :update, :destroy]
 
    
   def new 
@@ -33,6 +34,13 @@ class TextPostsController < ApplicationController
 
 
   private 
+
+  #def text_post_owner 
+    #unless current_user == @text_post.user 
+      #redirect_to root_path
+      #alert: "This post does not belong to you!"
+    #end
+  #end
 
   def text_post_params
     params.require(:text_post).permit(:title, :content)

@@ -11,7 +11,7 @@
 #
 class User < ApplicationRecord
 
-  has_secure_password #bcrypt
+  
 
     ########  Members/followers and following 
   
@@ -37,7 +37,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   
   #returns true/false if the current user is following another user
-
+=begin
   def following?(subscriber)
     subscribers.include?(subscriber)
   end
@@ -52,9 +52,9 @@ class User < ApplicationRecord
   end
 
 
-  def timeline_user_ids
+  # timeline_user_ids
     
-    subscriber_ids + [id]
-  end
-
+    #subscriber_ids + [id]
+  #end
+=end
 end

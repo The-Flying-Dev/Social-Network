@@ -20,7 +20,8 @@ gem 'jbuilder', '~> 2.5'
 
 #PROJECT GEMS
 
-gem 'bcrypt', '~> 3.1.7'
+gem 'better_errors', '~> 2.9', '>= 2.9.1'
+gem 'devise', '~> 4.8', '>= 4.8.1'
 gem 'will_paginate', '~> 3.3', '>= 3.3.1'
 
 ###############################################

@@ -1,5 +1,6 @@
 class ImagePostsController < ApplicationController
   before_action :authenticate_user!
+  #before_action :image_post_owner, only: [:edit, :update, :destroy]
 
   
   def new 
@@ -30,8 +31,21 @@ class ImagePostsController < ApplicationController
     end
   end
 
+  def destroy
+    @image_post = current_user.image_posts.find(params[:id])
+    @image_post.destroy
+    redirect_to root_path, notice: "Post was successfully destroyed."   
+  end
+
 
   private
+
+  #def image_post_owner 
+    #unless current_user == @image_post.user 
+      #redirect_to root_path
+      #alert: "This post does not belong to you!"
+    #end
+  #end
 
   def image_post_params
     params.require(:image_post).permit(:title, :content, :url)

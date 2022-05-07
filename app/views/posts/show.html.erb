@@ -6,9 +6,9 @@
 
   <h3>Comments</h3>
 
-  <% cache [@post, 'comments', @moderate] do %>
+  <%# cache [@post, 'comments', @moderate] do %>
     <%= render @post.comments %>
-  <% end %>
+  <%# end %>
   <!-- form to create comment -->
 
   <h4>New Comment</h4>
