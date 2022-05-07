@@ -6,4 +6,6 @@
   <p><%= link_to "New Image Post", new_image_post_path, class: "btn btn-dedault" %></p>
 
  <%= render @posts %>
+
+ <%= will_paginate @posts %>
 </div>

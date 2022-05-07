@@ -17,7 +17,7 @@
 class Comment < ApplicationRecord
 
   #associations
-  belongs_to :post
+  belongs_to :post, touch: true
   belongs_to :user
 
   #validations  

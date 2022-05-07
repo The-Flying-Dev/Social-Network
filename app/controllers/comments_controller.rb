@@ -13,6 +13,16 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @comment = Comment.find(params[:id])
+
+    if @comment.destroy
+      redirect_to post_path(@comment.post_id), notice: "Delete successful!"
+    else  
+      redirect_to post_path(@comment.post_id), alert: "There was an error deleting this comment, try again?"
+    end 
+  end
+
 
   private 
   def comment_params
