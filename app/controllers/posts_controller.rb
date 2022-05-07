@@ -1,10 +1,10 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!
+  #before_action :authenticate_user!
 
   
  
   def index 
-    @posts = Post.all
+    @posts = Post.all.paginate(page: params[:page], per_page: 5)
     #user_ids = current_user.timeline_user_ids
     #@posts = Post.includes(:user).where(user_id: user_ids) #eager loading reduces N + 1 Queries
     #  .paginate(page: params[:page], per_page: 5)

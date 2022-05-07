@@ -1,19 +1,28 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <span><%= link_to 'Social Feed', root_path %></span> | 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <% if current_user %>
-        <li><%= link_to "Profile", current_user %></li>
-        <li><%= link_to "Logout", logout_path, method: :delete %></li> 
-               
-                
-      <% else %>        
-        <%= link_to "Login", login_path  %> | 
-        <%= link_to "Sign up", signup_path  %> 
-      <% end %>      
-    </div>
+<!-- navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+  <div class="container-fluid navbar-nav collapse navbar-collapse">
+      
+    <ul>
+      <li class="home-link"><%= link_to "The Social Feed", root_path %></li>
+      
+
+      <% if user_signed_in? %> 
+      
+                    
+        
+        <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>   
+        
+
+      <% else %>
+
+        <li><%= link_to "Login", new_user_session_path %></li>
+        <li><%= link_to "Create Account", new_user_registration_path %></li>
+
+      <% end %>
+
+    </ul>
+
   </div>
+
 </nav>
