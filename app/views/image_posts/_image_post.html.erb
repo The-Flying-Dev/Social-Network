@@ -9,7 +9,7 @@
     </div>
 
     <div class="panel-body">
-      <p><em>By <%= link_to image_post.user.name, image_post.user %></em></p>
+      <p><em>By <%= "#{image_post.user.username}" %> <%# link_to image_post.user.name, image_post.user %></em></p>
 
       <%= image_tag image_post.url, class: "img-responsive" %>
       <%= sanitize image_post.content %>
