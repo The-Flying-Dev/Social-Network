@@ -1,0 +1,31 @@
+<h1>Profiles#show</h1>
+<p>Find me in app/views/profiles/show.html.erb</p>
+
+<% if @user == current_user %>
+  <%= link_to "Edit Profile", edit_profile_path(@user.username), class: "btn btn-default" %> 
+<% end %>
+
+
+
+
+
+ <%# will_paginate @posts %>
+
+ <div class="panel panel-default">
+  <div class="panel-heading">    
+    
+  </div>
+
+  <div class="panel-body">
+    <p><em></em></p>  
+
+    <%= sanitize @user.username %>
+    <%= sanitize @user.bio %>
+    <br />
+    
+
+    <%= render @posts %>
+
+    
+  </div>
+</div>

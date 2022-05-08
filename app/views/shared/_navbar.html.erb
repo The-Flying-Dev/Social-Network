@@ -1,28 +1,31 @@
 <!-- navbar -->
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand"><%= link_to "The Social Feed", root_path, class: "btn btn-success" %></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+      data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
 
-  <div class="container-fluid navbar-nav collapse navbar-collapse">
-      
-    <ul>
-      <li class="home-link"><%= link_to "The Social Feed", root_path %></li>
-      
+        <% if user_signed_in? %>    
+          
+          <a class="nav-link"><%= link_to "New Text Post", new_text_post_path, class: "btn btn-dark" %></a>
+          <a class="nav-link"><%= link_to "New Image Post", new_image_post_path, class: "btn btn-dark" %></a>
+          <a class="nav-link"><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-dark" %></a>
+          <a class="nav-link"><%= link_to "Logged in as #{current_user.username}", class: "btn btn-dark" %></a>
+          <a class="nav-link"><%# link_to "View Profile", profile_path(@current_user.username), class: "btn btn-default" %> </a>
 
-      <% if user_signed_in? %> 
-      
-                    
-        
-        <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>   
-        
+        <% else %>
 
-      <% else %>
+          <a class="nav-link"><%= link_to "Login", new_user_session_path, class: "btn btn-dark" %></a>
+          <a class="nav-link"><%= link_to "Create Account", new_user_registration_path, class: "btn btn-dark" %></a>
 
-        <li><%= link_to "Login", new_user_session_path %></li>
-        <li><%= link_to "Create Account", new_user_registration_path %></li>
-
-      <% end %>
-
-    </ul>
-
+        <% end %>
+      </div>
+    </div>
   </div>
-
 </nav>

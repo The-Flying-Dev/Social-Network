@@ -24,6 +24,7 @@ class Post < ApplicationRecord
    #validations
    validates :user_id, presence: true 
    validates :type, presence: true
+   validates :content, presence: true
 
    # cached_comment_count 
     #Rails.cache.fetch [self, "comment_count"] do 

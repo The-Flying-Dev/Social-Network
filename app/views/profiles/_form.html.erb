@@ -1,0 +1,14 @@
+<%= form_for @user, url: {action: "update"} do | f | %>
+<%# form_for @user do | f | %>
+
+ 
+
+  <div class="form-group">
+    <%= f.label :bio %>
+    <%= f.text_field :bio, class: "form-control" %>
+  </div>
+
+  <%= f.submit "Update Profile", class: "btn btn-primary" %>
+  <%= link_to 'Cancel', :back, class: "bnt btn-primary" %>
+
+<% end %>

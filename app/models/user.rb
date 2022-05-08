@@ -3,6 +3,7 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
+#  bio                    :text
 #  email                  :string           not null
 #  encrypted_password     :string           default(""), not null
 #  name                   :string           not null
@@ -23,8 +24,10 @@
 class User < ApplicationRecord
 
   before_save :proper_case
-    ########  Members/followers and following 
-  
+
+  #associations
+
+  # Members/followers and following   
   #current user for following other users
   #dependent: :destroy, prevents orphan records by destroying any associated records if the user is destroyed
 
@@ -32,13 +35,11 @@ class User < ApplicationRecord
   has_many :subscribers, through: :members
 
   #other users following the current user
-
   has_many :reverse_members, foreign_key: :subscriber_id, class_name: 'Member', dependent: :destroy 
   has_many :followers, through: :reverse_members
 
-  #associations
+ 
   #dependent: :destroy, prevents orphan records
-
   has_many :posts, dependent: :destroy
   has_many :text_posts, dependent: :destroy
   has_many :image_posts, dependent: :destroy
@@ -73,9 +74,9 @@ class User < ApplicationRecord
 
    #validations
    validates_presence_of :name
-   validates :username,  presence: true, :case_sensitive => false    
+   validates :username,  presence: true, length: { minimu: 4, maximum: 15 }, :case_sensitive => false    
    validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
-   validate :validate_username
+   validate :validate_username #method
    validates :email, presence: true, uniqueness: true
    validates_format_of :email, with: URI::MailTo::EMAIL_REGEXP,
      message: "must be a valid email address"
@@ -92,8 +93,8 @@ class User < ApplicationRecord
 
 
 
-   # Link below for Devise custom login
-   #https://github.com/heartcombo/devise/wiki/How-To:-Allow-users-to-sign-in-using-their-username-or-email-address
+  # Link below for Devise custom login
+  #https://github.com/heartcombo/devise/wiki/How-To:-Allow-users-to-sign-in-using-their-username-or-email-address
 
   #login virtual attribute, setter
   attr_writer :login 
@@ -107,42 +108,46 @@ class User < ApplicationRecord
     where("lower(username) = :value OR email = :value", :value => login ).first
   end
   
-    # function to handle user's login via email or username
-    def self.find_for_database_authentication(conditions)
-      conditions = conditions.dup
-      login = conditions.delete(:login).downcase
-      find_authenticatable(login)    
-    end 
-    
-    def self.send_reset_password_instructions(conditions)
-      recoverable = find_recoverable_or_init_with_errors(conditions)
+  # function to handle user's login via email or username
+  def self.find_for_database_authentication(conditions)
+    conditions = conditions.dup
+    login = conditions.delete(:login).downcase
+    find_authenticatable(login)    
+  end 
   
-      if recoverable.persisted?
-        recoverable.send_reset_password_instructions
-      end
-  
-      recoverable
-    end
-    
-  
-    def self.find_recoverable_or_init_with_errors(conditions)
-      conditions = conditions.dup 
-      login = conditions.delete(:login).downcase
-      recoverable = find_authenticatable(login)
-  
-      unless recoverable
-        recoverable = new(login: login)
-        recoverable.errors.add(:login, login.present? ? :not_found : :blank)
-      end
-  
-      recoverable
+  def self.send_reset_password_instructions(conditions)
+    recoverable = find_recoverable_or_init_with_errors(conditions)
+
+    if recoverable.persisted?
+      recoverable.send_reset_password_instructions
     end
 
-    def validate_username
-      if User.where(email: username).exists?
-        errors.add(:username, :invalid)
-      end
+    recoverable
+  end
+  
+
+  def self.find_recoverable_or_init_with_errors(conditions)
+    conditions = conditions.dup 
+    login = conditions.delete(:login).downcase
+    recoverable = find_authenticatable(login)
+
+    unless recoverable
+      recoverable = new(login: login)
+      recoverable.errors.add(:login, login.present? ? :not_found : :blank)
     end
+
+    recoverable
+  end
+
+  def validate_username
+    if User.where(email: username).exists?
+      errors.add(:username, :invalid)
+    end
+  end
+
+
+
+
 
   
     private 

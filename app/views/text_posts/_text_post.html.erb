@@ -9,7 +9,7 @@
     </div>
 
     <div class="panel-body">
-      <p><em>By <%= "#{text_post.user.username}" %> <%# link_to text_post.user.username, text_post %></em></p>  
+      <p><em>By <%= link_to "#{text_post.user.username}", profile_path(text_post.user.username) %> <%# link_to text_post.user.username, text_post %></em></p>  
 
       <%= sanitize text_post.content %>
       <br />
@@ -24,5 +24,6 @@
 
 <% if text_post.user == current_user %>
   <%= link_to "Edit", edit_text_post_path(text_post), class: "btn btn-default" %>
-  <%= link_to "Remove Post", text_post_path(text_post), method: :delete, class: "btn btn-default" %>
+  <%= link_to "Remove Post", text_post_path(text_post), method: :delete,
+    data: { confirm: "Are you sure you want to remove this post?" }, class: "btn btn-default" %>
 <% end %>

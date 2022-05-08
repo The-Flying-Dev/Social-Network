@@ -1,5 +1,6 @@
 class TextPostsController < ApplicationController
   before_action :authenticate_user!
+  #before_action :set_text_post, only: [:show :edit, :update, :destroy]
   #before_action :text_post_owner, only: [:edit, :update, :destroy]
 
    
@@ -32,9 +33,18 @@ class TextPostsController < ApplicationController
     end
   end
 
+  def destroy
+    @text_post = current_user.text_posts.find(params[:id])
+    @text_post.destroy
+    redirect_to root_path, notice: "Post was successfully destroyed."   
+  end
+
 
   private 
 
+  def set_text_post
+    @text_post = TextPost.find(params[:id])
+  end
   #def text_post_owner 
     #unless current_user == @text_post.user 
       #redirect_to root_path
