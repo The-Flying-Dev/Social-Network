@@ -16,7 +16,7 @@
           <a class="nav-link"><%= link_to "Post Text", new_text_post_path, class: "btn btn-dark" %></a>
           <a class="nav-link"><%= link_to "Post Picture", new_image_post_path, class: "btn btn-dark" %></a>
           <a class="nav-link"><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-dark" %></a>
-          <a class="nav-link"><%= link_to "Public Feed", posts_path, class: "btn btn-dark" %></a>
+          <a class="nav-link"><%= link_to "Public Feed", feed_index_path, class: "btn btn-dark" %></a>
           <a class="nav-link"><%= link_to "#{current_user.username}", profile_path(current_user.username), class: "btn btn-dark" %> </a>
 
         <% else %>
