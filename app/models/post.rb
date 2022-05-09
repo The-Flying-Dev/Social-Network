@@ -21,15 +21,10 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
 
-   #validations
-   validates :user_id, presence: true 
-   validates :type, presence: true
-   validates :content, presence: true
+  #validations
+  validates :user_id, presence: true 
+  validates :type, presence: true
+  validates :content, presence: true
 
-   # cached_comment_count 
-    #Rails.cache.fetch [self, "comment_count"] do 
-      #comments.size 
-    #end
-   #end
-   
+  scope :of_followed_users, -> (following_users) { where user_id: following_users } 
 end

@@ -2,8 +2,7 @@ class ProfilesController < ApplicationController
   before_action :profile_owner, only: [:edit, :update]
   before_action :set_user, only: [:show, :edit, :update]
 
-  def show
-    #@user = User.find_by(username: params[:username]) #user object for profile
+  def show     
     @posts = User.find_by(username: params[:username]).posts.order('created_at DESC')   
   end
 
@@ -21,13 +20,10 @@ class ProfilesController < ApplicationController
     end
   end
 
-
-  
-
   private 
 
   def set_user 
-    @user = User.find_by(username: params[:username]) 
+    @user = User.find_by(username: params[:username]) #user object for profile
   end
 
   def profile_params

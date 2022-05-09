@@ -1,8 +1,15 @@
-<h1>Profiles#show</h1>
-<p>Find me in app/views/profiles/show.html.erb</p>
+<h1>Profiles Page</h1>
+
 
 <% if @user == current_user %>
   <%= link_to "Edit Profile", edit_profile_path(@user.username), class: "btn btn-default" %> 
+
+<% elsif current_user_is_following(current_user.id, @user.id) %>
+  <%= link_to "Unfollow", unfollow_user_path, method: :post, class: "btn btn-success" %>
+
+<% else %> 
+  <%= link_to "Follow", follow_user_path, method: :post, class: "btn btn-warning" %>
+
 <% end %>
 
 

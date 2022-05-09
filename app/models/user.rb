@@ -31,12 +31,6 @@ class User < ApplicationRecord
   #current user for following other users
   #dependent: :destroy, prevents orphan records by destroying any associated records if the user is destroyed
 
-  has_many :members, foreign_key: :follower_id, dependent: :destroy 
-  has_many :subscribers, through: :members
-
-  #other users following the current user
-  has_many :reverse_members, foreign_key: :subscriber_id, class_name: 'Member', dependent: :destroy 
-  has_many :followers, through: :reverse_members
 
  
   #dependent: :destroy, prevents orphan records
@@ -45,28 +39,21 @@ class User < ApplicationRecord
   has_many :image_posts, dependent: :destroy
   has_many :comments, dependent: :destroy
 
+  has_many :follower_relationships, foreign_key: :following_id, class_name: 'Follow'
+  has_many :followers, through: :follower_relationships, source: :follower 
+
+  has_many :following_relationships, foreign_key: :follower_id, class_name: 'Follow'
+  has_many :following, through: :following_relationships, source: :following 
     
-  #returns true/false if the current user is following another user
-=begin
-  def following?(subscriber)
-    subscribers.include?(subscriber)
+
+  def follow(user_id)
+    following_relationships.create(following_id: user_id)
   end
 
-  #action to indicate that the current user is following another user
-
-  def follow!(subscriber)
-    #subscribers = []
-    if subscriber != self && !following?(subscriber)
-      subscribers << subscriber
-    end
+  def unfollow(user_id)
+    following_relationships.find_by(following_id: user_id).destroy
   end
 
-
-  # timeline_user_ids
-    
-    #subscriber_ids + [id]
-  #end
-=end
 
  #######################################################################################################################
 
@@ -139,6 +126,7 @@ class User < ApplicationRecord
     recoverable
   end
 
+  #prevents users from creating usernames of email addresses that already exits in the DB
   def validate_username
     if User.where(email: username).exists?
       errors.add(:username, :invalid)

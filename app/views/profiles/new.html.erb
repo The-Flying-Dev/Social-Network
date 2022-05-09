@@ -1,0 +1,18 @@
+<div class="page-header">
+  <h1>Create your Profile</h1>
+</div>
+
+<%= form_for @user, url: {action: "create"} do | f | %>
+<%# form_for @user do | f | %>
+
+ 
+
+  <div class="form-group">
+    <%= f.label :bio %>
+    <%= f.text_field :bio, class: "form-control" %>
+  </div>
+
+  <%= f.submit "Update Profile", class: "btn btn-primary" %>
+  <%= link_to 'Cancel', :back, class: "bnt btn-primary" %>
+
+<% end %>
