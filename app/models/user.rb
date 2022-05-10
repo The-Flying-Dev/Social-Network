@@ -25,7 +25,7 @@ class User < ApplicationRecord
 
   before_save :proper_case
 
-  #acts_as_voter
+  
 
   #associations
 
@@ -135,6 +135,8 @@ class User < ApplicationRecord
     end
   end
 
+
+  # To search for users
   def self.search(term)
     if term 
       where('name LIKE?',"%#{term}%")

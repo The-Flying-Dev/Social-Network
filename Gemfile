@@ -23,7 +23,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'better_errors', '~> 2.9', '>= 2.9.1'
 gem 'devise', '~> 4.8', '>= 4.8.1'
 gem 'will_paginate', '~> 3.3', '>= 3.3.1'
-gem 'acts_as_votable', '~> 0.13.2'
+
 
 ###############################################
 

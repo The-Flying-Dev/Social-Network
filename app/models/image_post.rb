@@ -16,7 +16,7 @@
 #  index_posts_on_user_id  (user_id)
 #
 class ImagePost < Post #single table inheritance
-  #acts_as_votable
+  
   #validation
   validates :url, presence: true
 end

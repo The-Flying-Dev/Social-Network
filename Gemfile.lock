@@ -42,7 +42,6 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    acts_as_votable (0.13.2)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     annotate (3.2.0)
@@ -210,7 +209,6 @@ PLATFORMS
   x64-mingw32
 
 DEPENDENCIES
-  acts_as_votable (~> 0.13.2)
   annotate (~> 3.2)
   better_errors (~> 2.9, >= 2.9.1)
   bootsnap (>= 1.1.0)

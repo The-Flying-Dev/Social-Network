@@ -16,7 +16,7 @@
 #  index_posts_on_user_id  (user_id)
 #
 class Post < ApplicationRecord
-  #acts_as_votable
+  
   #associations
   belongs_to :user
   has_many :comments, dependent: :destroy
