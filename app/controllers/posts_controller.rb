@@ -6,9 +6,12 @@ class PostsController < ApplicationController
    
  
   def index 
-    @posts = Post.of_followed_users(current_user.following)
-      .order("created_at DESC").paginate(page: params[:page], per_page: 5)
-    
+    if current_user 
+      @posts = Post.of_followed_users(current_user.following)
+        .order("created_at DESC").paginate(page: params[:page], per_page: 5)
+    else  
+      redirect_to feed_index_path
+    end 
     #@posts = Post.includes(:user).where(user_id: user_ids) #eager loading reduces N + 1 Queries
     #  .paginate(page: params[:page], per_page: 5)
     #  .order("created_at DESC") 
@@ -19,6 +22,7 @@ class PostsController < ApplicationController
     @moderate = (current_user == @post.user)
   end
 
+ 
 
   private 
 

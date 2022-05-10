@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
   
-  #get 'feed/index'
-  get 'feed/index'
+  
+  
   devise_for :users
   resources :comments
   resources :image_posts
   resources :text_posts
-  resources :posts
+  resources :posts 
+
+
   
+  get 'feed/index'
+  get 'profiles/index'
   get ':username', to: 'profiles#show', as: :profile
   get ':username/edit', to: 'profiles#edit', as: :edit_profile  
   patch ':username/edit', to: 'profiles#update', as: :update_profile

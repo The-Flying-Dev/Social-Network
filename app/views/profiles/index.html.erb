@@ -1,0 +1,16 @@
+<div class="panel-body">
+
+  <% if @users.length > 0 %>
+    <% @users.each do |user| %>
+      <ul>
+        <li>
+          <%= link_to "#{user.username}", profile_path(user.username) %>
+        </li>
+      </ul> 
+    <% end %> 
+
+  <% else %>
+   <h3>No users found</h3>
+  <% end %>
+  
+</div>

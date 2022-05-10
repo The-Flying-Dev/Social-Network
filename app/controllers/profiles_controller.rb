@@ -2,8 +2,12 @@ class ProfilesController < ApplicationController
   before_action :profile_owner, only: [:edit, :update]
   before_action :set_user, only: [:show, :edit, :update]
 
+  def index 
+    @users = User.search(params[:term])  
+  end 
+
   def show     
-    @posts = User.find_by(username: params[:username]).posts.order("created_at DESC")   
+    @posts = User.find_by(username: params[:username]).posts.order("created_at DESC")     
   end
 
   def edit        
@@ -27,7 +31,7 @@ class ProfilesController < ApplicationController
   end
 
   def profile_params
-    params.require(:user).permit(:bio)
+    params.require(:user).permit(:bio, :term)
   end
 
   def profile_owner

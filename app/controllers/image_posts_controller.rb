@@ -38,6 +38,9 @@ class ImagePostsController < ApplicationController
   end
 
 
+ 
+
+
   private
 
   #def image_post_owner 
