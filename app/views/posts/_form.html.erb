@@ -1,0 +1,14 @@
+<%= form_for @post do | f | %>
+ 
+
+  <div class="form-group">
+    <%= f.label :content %>
+    <%= f.text_field :content, class: "form-control", required: true %>    
+  </div>
+
+
+
+  <%= f.submit class: "btn btn-primary" %>
+  <%= link_to 'Cancel', :back, class: "bnt btn-primary" %>
+
+<% end %>

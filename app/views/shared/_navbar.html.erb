@@ -13,7 +13,7 @@
 
         <% if user_signed_in? %>    
           
-          <a class="nav-link"><%= link_to "Post Text", new_text_post_path, class: "btn btn-dark" %></a>
+          <a class="nav-link"><%= link_to "Post Text", new_post_path, class: "btn btn-dark" %></a>
           <a class="nav-link"><%= link_to "Post Picture", new_image_post_path, class: "btn btn-dark" %></a>
           <a class="nav-link"><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-dark" %></a>
           <a class="nav-link"><%= link_to "The Social Feed", root_path, class: "btn btn-success" %></a>

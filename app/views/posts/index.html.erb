@@ -2,10 +2,23 @@
   
   <h4>Posts</h4>
 
-  <p><%= link_to "New Text Post", new_text_post_path, class: "btn btn-dedault" %></p>
-  <p><%= link_to "New Image Post", new_image_post_path, class: "btn btn-dedault" %></p>
 
- <%= render @posts %>
 
- <%= will_paginate @posts %>
+  <p><%# link_to "New Text Post", new_post_path, class: "btn btn-dedault" %></p>
+  <p><%# link_to "New Image Post", new_image_post_path, class: "btn btn-dedault" %></p>
+
+  <% @posts.each do |post| %>
+    <ul>
+      <li><%= post.content %></li>
+      <li><%= "user is " + post.user.username %></li>
+      
+       
+      <%# link_to post.user.username, profile_path(post.user.username) %>
+      <%#= link_to "#{time_ago_in_words post.created_at} ago", post_path(post) %>
+    </ul>
+
+  <% end %>
+
+
+ <%# will_paginate @posts %>
 </div>

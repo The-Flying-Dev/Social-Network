@@ -28,9 +28,19 @@
     <%= sanitize @user.username %>
     <%= sanitize @user.bio %>
     <br />
+
+    <% @posts.each do |post| %>
+  <ul>
+    <li><%= post.content %></li>
+    <%= post.user.username %>
+    <%# link_to post.user.username, profile_path(post.user.username) %>
+    <%#= link_to "#{time_ago_in_words post.created_at} ago", post_path(post) %>
+  </ul>
+
+  <% end %>
     
 
-    <%= render @posts %>
+    <%# render './posts/post' %>
 
     
   </div>

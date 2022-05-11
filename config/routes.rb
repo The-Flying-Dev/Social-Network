@@ -4,11 +4,16 @@ Rails.application.routes.draw do
   
   devise_for :users
   resources :comments
-  resources :image_posts
-  resources :text_posts
-  resources :posts 
+  resources :image_posts  
+  resources :posts do 
+    member do 
+      put 'like', to: 'posts#upvote'
+      put 'dislike', to: 'posts#downvote'
+    end
+  end
 
 
+  
   
   get 'feed/index'
   get 'profiles/index'

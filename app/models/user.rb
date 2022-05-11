@@ -23,8 +23,13 @@
 #
 class User < ApplicationRecord
 
-  before_save :proper_case
+  #hook method
+  before_save :name_uppercase
 
+  #login virtual attribute, setter
+  attr_writer :login 
+
+  acts_as_voter
   
 
   #associations
@@ -36,8 +41,7 @@ class User < ApplicationRecord
 
  
   #dependent: :destroy, prevents orphan records
-  has_many :posts, dependent: :destroy
-  has_many :text_posts, dependent: :destroy
+  has_many :posts, dependent: :destroy  
   has_many :image_posts, dependent: :destroy
   has_many :comments, dependent: :destroy
 
@@ -59,34 +63,25 @@ class User < ApplicationRecord
 
  #######################################################################################################################
 
- 
-
    #validations
-   validates_presence_of :name
-   validates :username,  presence: true, length: { minimu: 4, maximum: 15 }, :case_sensitive => false    
-   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
-   validate :validate_username #method
-   validates :email, presence: true, uniqueness: true
-   validates_format_of :email, with: URI::MailTo::EMAIL_REGEXP,
-     message: "must be a valid email address"
+   validate :validate_username #custom method
+   validates :name, presence: true, uniqueness: true
+   validates :username,  presence: true, length: { minimum: 4, maximum: 15 }, case_sensitive: false,
+       format: { with: /^[a-zA-Z0-9_\.]*$/ , multiline: true }  
+   validates :email, presence: true, uniqueness: true, 
+             format: { with: URI::MailTo::EMAIL_REGEXP, message: "must be a valid email address" }
    
-
-
-
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         authentication_keys: [:login],
-         reset_password_keys: [:login]
+         authentication_keys: [:login], reset_password_keys: [:login]
 
 
 
   # Link below for Devise custom login
   #https://github.com/heartcombo/devise/wiki/How-To:-Allow-users-to-sign-in-using-their-username-or-email-address
-
-  #login virtual attribute, setter
-  attr_writer :login 
   
 
   def login
@@ -151,7 +146,7 @@ class User < ApplicationRecord
   
     private 
 
-    def proper_case
+    def name_uppercase
       self.name = name.capitalize
     end
 
