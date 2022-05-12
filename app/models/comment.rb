@@ -16,6 +16,7 @@
 #
 class Comment < ApplicationRecord
 
+  acts_as_votable
   #associations
   belongs_to :post, touch: true
   belongs_to :user

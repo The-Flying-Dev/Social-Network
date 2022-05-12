@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   
   
   devise_for :users
-  resources :comments
-  resources :image_posts  
+
+  resources :comments 
+  resources :image_posts 
+
   resources :posts do 
     member do 
       put 'like', to: 'posts#upvote'

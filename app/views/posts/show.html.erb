@@ -13,12 +13,23 @@
     <%= button_to dislike_post_path(@post), method: :put do %>
       <li><i class="fa-solid fa-heart-crack"></i> <%= @post.get_downvotes.size %></li>
       
-      <% end %>
-    </li>
-    
-    
+      <% end %>  
     
   </ul>
+
+
+
+  <%# if !current_user.voted_up_on? @post %>
+  <%#= link_to "LIKE #{@post.get_upvotes.size}", like_post_path(@post) %>
+<%# else %>
+  <%#= link_to "LIKE #{@post.get_upvotes.size}", like_post_path(@post), method: :put, class: "btn btn-outline-dark" %>
+<%# end %>
+
+<%# if current_user.voted_down_on? @post %>
+  <%#= link_to "DISLIKE #{@post.get_downvotes.size}", dislike_post_path(@post), method: :put, class: "btn btn-outline-danger" %>
+<%# else %>
+  <%#= link_to "DISLIKE #{@post.get_downvotes.size}", dislike_post_path(@post), method: :put, class: "btn btn-outline-dark" %>
+<%# end %>
   
 
   <% if @post.user == current_user %>
@@ -32,6 +43,10 @@
 
   <%# cache [@post, 'comments', @moderate] do %>
     <%= render @post.comments %>
+
+    
+
+
   <%# end %>
   <!-- form to create comment -->
 

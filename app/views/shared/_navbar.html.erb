@@ -18,12 +18,8 @@
           <a class="nav-link"><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-dark" %></a>
           <a class="nav-link"><%= link_to "The Social Feed", root_path, class: "btn btn-success" %></a>
           <a class="nav-link"><%= link_to "#{current_user.username}", profile_path(current_user.username), class: "btn btn-dark" %> </a>
-
-
-          <%= form_tag(profiles_index_path, method: :get) do %>
-          <%= text_field_tag :term, params[:term] %>
-          <%= submit_tag 'Search' %>
-        <% end %>
+          <a class="nav-link"><%= render 'shared/search' %></a>
+        
 
         <% else %>
 
