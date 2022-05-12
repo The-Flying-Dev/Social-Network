@@ -26,6 +26,8 @@ class Post < ApplicationRecord
   #associations
   belongs_to :user
   has_many :comments, dependent: :destroy
+  has_many_attached :images 
+  
 
   #validations
   validates :user_id, presence: true   

@@ -2,14 +2,18 @@
 
 
 <% if @user == current_user %>
-  <%= link_to "Edit Profile", edit_profile_path(@user.username), class: "btn btn-default" %> 
+  <%= link_to "Edit Profile", main_app.edit_profile_path(@user.username), class: "btn btn-default" %> 
 
 <% elsif current_user_is_following(current_user.id, @user.id) %>
-  <%= link_to "Unfollow", unfollow_user_path, method: :post, class: "btn btn-success" %>
+  <%= link_to "Unfollow", main_app.unfollow_user_path, method: :post, class: "btn btn-success" %>
 
 <% else %> 
-  <%= link_to "Follow", follow_user_path, method: :post, class: "btn btn-warning" %>
+  <%= link_to "Follow", main_app.follow_user_path, method: :post, class: "btn btn-warning" %>
 <% end %>
+
+
+
+
 
 
 

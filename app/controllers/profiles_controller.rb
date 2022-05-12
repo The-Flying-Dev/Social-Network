@@ -2,6 +2,7 @@ class ProfilesController < ApplicationController
   before_action :profile_owner, only: [:edit, :update]
   before_action :set_user, only: [:show, :edit, :update]
 
+
   def index 
     @users = User.search(params[:term])  
   end 

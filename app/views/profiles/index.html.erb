@@ -4,15 +4,21 @@
     <% @users.each do |user| %>
       <ul>
         <li>
-          <%= link_to "#{user.username}", profile_path(user.username) %>
+          <%= link_to "#{user.username}", main_app.profile_path(user.username) %>
         </li>
       </ul> 
     <% end %> 
 
   <% else %>
-   <h3>No users found </h3>
+
+   <h3>No results found for <%= "#{params[:term]}" %></h3>
    <p>try again</p>
    <%= render '/shared/search' %>
+   
   <% end %>
   
 </div>
+
+<script>
+  document.getElementById("field").value = "";
+</script>

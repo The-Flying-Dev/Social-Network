@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
   
   
+  mount Notifications::Engine => "/notifications"
   devise_for :users
 
   resources :comments 

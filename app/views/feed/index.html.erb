@@ -5,8 +5,8 @@
   <ul>
     <li><%= post.content %></li>
     <%#= post.user.username %>
-    <%= link_to post.user.username, profile_path(post.user.username) %>
-    <%= link_to "#{time_ago_in_words post.created_at} ago", post_path(post) %>
+    <%= link_to post.user.username, main_app.profile_path(post.user.username) %>
+    <%= link_to "#{time_ago_in_words post.created_at} ago", main_app.post_path(post) %>
   </ul>
 
   <% end %>

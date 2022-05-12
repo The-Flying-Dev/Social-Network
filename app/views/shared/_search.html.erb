@@ -1,6 +1,11 @@
 <!-- Search field for users -->
 
-<%= form_tag(profiles_index_path, method: :get) do %>
-  <%= text_field_tag :term, params[:term] %>
+<%= form_tag(main_app.profiles_index_path, method: :get) do %>
+  <%= text_field_tag :term, params[:term], id: "field" %>
   <%= submit_tag 'Search' %>
 <% end %>
+
+
+<script>
+  document.getElementById("field").value = "";
+</script>

@@ -11,8 +11,10 @@
     <ul>
       <li><%= post.content %></li>
       <li><%= "user is " + post.user.username %></li>
-      
-       
+
+      <%# if post.images.attached? do |image| %>
+        <li><%#= image_tag post.image, style: "width: 150px; height: 150px" %></li>
+      <%# end %> 
       <%# link_to post.user.username, profile_path(post.user.username) %>
       <%#= link_to "#{time_ago_in_words post.created_at} ago", post_path(post) %>
     </ul>
