@@ -32,7 +32,9 @@
     <%= sanitize @user.username %>
     <%= sanitize @user.bio %>
     <p>Profile pic</p>
-    <%= image_tag(@user.image, class: "image-style" ) %>
+
+    
+    <%= image_tag(@user.image, class: "image-style" ) if @user.image.attached? %>
     <br />
 
     <% @posts.each do |post| %>

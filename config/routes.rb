@@ -1,5 +1,6 @@
 Rails.application.routes.draw do 
 
+  #gem 'notifications', '~> 1.1'
   mount Notifications::Engine => "/notifications"
 
   devise_for :users

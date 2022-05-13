@@ -1,9 +1,7 @@
 class PostsController < ApplicationController
-  #before_action :authenticate_user!
-
-
-  
-   
+  #before_action :authenticate_user! 
+   before_action :set_post, only: [:upvote, :downvote]
+   before_action :post_owner, only: [:edit, :update, :destroy]
  
   def index 
     if current_user      
@@ -22,13 +20,14 @@ class PostsController < ApplicationController
       @moderate = (current_user == @post.user)     
   end
 
+
   def new 
     @post = Post.new 
   end
 
+
   def create     
-    @post = current_user.posts.build(post_params)
-    
+    @post = current_user.posts.build(post_params)    
     if @post.save
       redirect_to main_app.post_path(@post),
                   notice: "Post was successfully created."
@@ -42,6 +41,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.find(params[:id])
   end
 
+
   def update 
     @post = current_user.posts.find(params[:id])
     if @post.update(post_params)
@@ -50,6 +50,7 @@ class PostsController < ApplicationController
       render :edit, alert: "There was an error updating your post, try again?"
     end
   end
+
 
   def destroy
     @post = current_user.posts.find(params[:id])
@@ -60,53 +61,36 @@ class PostsController < ApplicationController
 
 
   def upvote
-    @post = Post.find(params[:id])
+    #@post = Post.find(params[:id])
     @post.upvote_by current_user
-    #respond_to do |format|
-      #format.js
-    #end
     redirect_to @post #will redirect them to the same page they were on
   end
   
   def downvote
-    @post = Post.find(params[:id])
-    @post.downvote_by current_user
-    #respond_to do |format|
-      #format.js
-    #end
+    #@post = Post.find(params[:id])
+    @post.downvote_by current_user    
     redirect_to @post
   end
 
 
   
-  private 
-
-  def all_posts 
-    @posts = Post.all
-  end
-
+  private
+ 
   def set_post
     @post = Post.find(params[:id])
   end
 
-  #def text_post_owner 
-    #unless current_user == @text_post.user 
-      #redirect_to root_path
-      #alert: "This post does not belong to you!"
-    #end
-  #end
+  def post_owner 
+    @post = Post.find(params[:id])
+    unless current_user == @post.user 
+      redirect_to main_app.root_path,
+      alert: "This post does not belong to you!"
+    end
+  end
 
   def post_params
     params.require(:post).permit(:content, images: [])
   end
 
-
- 
-
-  
-
-  #def load_posts
-  #  @posts = Post.all.order("created_at DESC").paginate(page: params[:page], per_page: 5)
-  #end
 
 end

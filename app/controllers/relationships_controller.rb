@@ -1,6 +1,6 @@
 class RelationshipsController < ApplicationController
-
-
+  before_action :authenticate_user!
+  
   def follow_user
     @user = User.find_by!(username: params[:username])
     if current_user.follow @user.id 

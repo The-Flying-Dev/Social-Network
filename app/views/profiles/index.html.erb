@@ -3,7 +3,7 @@
   <% if @users.length > 0 %>
     <% @users.each do |user| %>
       <ul>
-        <li><%= image_tag(@user.image, class: "image-style" ) %>
+        <li><%= image_tag(user.image, class: "image-style" ) if user.image.attached? %>
           <%= link_to "#{user.username}", main_app.profile_path(user.username) %>
         </li>
       </ul> 

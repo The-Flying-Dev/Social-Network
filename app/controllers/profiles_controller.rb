@@ -1,4 +1,5 @@
 class ProfilesController < ApplicationController
+  before_action :authenticate_user!
   before_action :profile_owner, only: [:edit, :update]
   before_action :set_user, only: [:show, :edit, :update]
 
@@ -12,9 +13,7 @@ class ProfilesController < ApplicationController
   end
 
   def edit        
-  end
-
-  
+  end  
 
   def update    
     if @user.update(profile_params)
