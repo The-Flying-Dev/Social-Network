@@ -10,7 +10,7 @@ class PostsController < ApplicationController
        @posts = Post.of_followed_users(current_user.following).
       order("created_at DESC").paginate(page: params[:page], per_page: 5)      
     else   
-      redirect_to feed_index_path 
+      redirect_to main_app.feed_index_path 
     end 
     #@posts = Post.includes(:user).where(user_id: user_ids) #eager loading reduces N + 1 Queries
     #  .paginate(page: params[:page], per_page: 5)
@@ -26,11 +26,11 @@ class PostsController < ApplicationController
     @post = Post.new 
   end
 
-  def create 
+  def create     
     @post = current_user.posts.build(post_params)
-
+    
     if @post.save
-      redirect_to post_path(@post),
+      redirect_to main_app.post_path(@post),
                   notice: "Post was successfully created."
     else
       render :new, alert: "There was an error creating your post, try again?"
@@ -45,7 +45,7 @@ class PostsController < ApplicationController
   def update 
     @post = current_user.posts.find(params[:id])
     if @post.update(post_params)
-        redirect_to post_path(@post), notice: "Post successfully updated"
+        redirect_to main_app.post_path(@post), notice: "Post successfully updated"
     else 
       render :edit, alert: "There was an error updating your post, try again?"
     end
@@ -54,7 +54,7 @@ class PostsController < ApplicationController
   def destroy
     @post = current_user.posts.find(params[:id])
     @post.destroy
-    redirect_to root_path, notice: "Post was successfully destroyed."   
+    redirect_to main_app.root_path, notice: "Post was successfully destroyed."   
   end
 
 

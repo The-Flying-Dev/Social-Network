@@ -13,14 +13,15 @@
 
         <% if user_signed_in? %>    
           
-          <a class="nav-link"><%= link_to "Post Text", main_app.new_post_path, class: "btn btn-dark" %></a>
-          <a class="nav-link"><%#= link_to "Post Picture", new_image_post_path, class: "btn btn-dark" %></a>
+          <a class="nav-link"><%= link_to "Add Post", main_app.new_post_path, class: "btn btn-dark" %></a>          
           <a class="nav-link"><%= link_to "Logout", main_app.destroy_user_session_path, method: :delete, class: "btn btn-dark" %></a>
           <a class="nav-link"><%= link_to "The Social Feed", main_app.root_path, class: "btn btn-success" %></a>
           <a class="nav-link"><%= link_to "#{current_user.username}", main_app.profile_path(current_user.username), class: "btn btn-dark" %> </a>
           <a class="nav-link"><%= render 'shared/search' %></a>
+
+          
           <a class="nav-link"><%= link_to pluralize(Notification.unread_count(current_user), 'Notification'), notifications_path %></a>
-        
+         
 
         <% else %>
 

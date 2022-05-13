@@ -32,7 +32,7 @@ class ProfilesController < ApplicationController
   end
 
   def profile_params
-    params.require(:user).permit(:bio, :term)
+    params.require(:user).permit(:bio, :term, :image)
   end
 
   def profile_owner

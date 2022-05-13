@@ -3,41 +3,36 @@
 
 
   <ul>
-    <li><%= @post.content %></li>
-    <li><%= @post.user.username %></li>  
+    <% if @post.content.length > 0 %>
 
-    <%# if @post.images.attached?.each do |image| %>
-      <li><%#= image_tag @post.image %></li>  
+      <li><%= @post.content %></li>
+          
+    <% end %>
 
-    <% #end %>
-    
-    <%= button_to like_post_path(@post), method: :put  do %>
-     <li><i class="fa-solid fa-heart"></i> <%= @post.get_upvotes.size %></li> 
-      
-      <% end %>
-
-    </li>
-    <%= button_to dislike_post_path(@post), method: :put do %>
-      <li><i class="fa-solid fa-heart-crack"></i> <%= @post.get_downvotes.size %></li>
-      
-      <% end %>  
-    
-  </ul>
-
-
-
-  <%# if !current_user.voted_up_on? @post %>
-  <%#= link_to "LIKE #{@post.get_upvotes.size}", like_post_path(@post) %>
-<%# else %>
-  <%#= link_to "LIKE #{@post.get_upvotes.size}", like_post_path(@post), method: :put, class: "btn btn-outline-dark" %>
-<%# end %>
-
-<%# if current_user.voted_down_on? @post %>
-  <%#= link_to "DISLIKE #{@post.get_downvotes.size}", dislike_post_path(@post), method: :put, class: "btn btn-outline-danger" %>
-<%# else %>
-  <%#= link_to "DISLIKE #{@post.get_downvotes.size}", dislike_post_path(@post), method: :put, class: "btn btn-outline-dark" %>
-<%# end %>
+    <% if @post.images.length > 0 %>
   
+      <% (0...@post.images.count).each do |image| %>   
+      <li><%= image_tag(@post.images[image], class: "image-style" ) %></li> 
+  
+      <% end %>
+    <% end %>
+
+    <li>by <%= link_to @post.user.username, main_app.profile_path(@post.user.username) %></li>
+    </ul>
+
+ 
+    <%= link_to main_app.like_post_path(@post), class: "btn btn-outline-dark",method: :put  do %> 
+
+     <i class="fa-solid fa-heart"></i> <%= @post.get_upvotes.size %>       
+      <% end %>
+     
+      <%= link_to main_app.dislike_post_path(@post), class: "btn btn-outline-dark", method: :put do %>
+      <i class="fa-solid fa-heart-crack"></i> <%= @post.get_downvotes.size %>
+      
+      <% end %>     
+  
+
+
 
   <% if @post.user == current_user %>
   <%= link_to "Edit", main_app.edit_post_path(@post), class: "btn btn-default" %>
@@ -48,13 +43,8 @@
 
   <h3>Comments</h3>
 
-  <%# cache [@post, 'comments', @moderate] do %>
-    <%= render @post.comments %>
-
-    
-
-
-  <%# end %>
+ 
+    <%= render @post.comments %> 
   <!-- form to create comment -->
 
   <h4>New Comment</h4>
@@ -73,4 +63,4 @@
 
 </div>
 
-<%= link_to "Home", posts_path, class: "btn btn-default" %>
+<%= link_to "Home", main_app.posts_path, class: "btn btn-default" %>

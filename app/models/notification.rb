@@ -21,7 +21,6 @@
 #  index_notifications_on_user_id                  (user_id)
 #  index_notifications_on_user_id_and_notify_type  (user_id,notify_type)
 #
-# Auto generate with notifications gem.
 class Notification < ActiveRecord::Base
   include Notifications::Model
 

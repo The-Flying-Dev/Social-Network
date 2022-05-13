@@ -31,6 +31,8 @@
 
     <%= sanitize @user.username %>
     <%= sanitize @user.bio %>
+    <p>Profile pic</p>
+    <%= image_tag(@user.image, class: "image-style" ) %>
     <br />
 
     <% @posts.each do |post| %>
@@ -44,7 +46,7 @@
   <% end %>
     
 
-    <%# render './posts/post' %>
+    
 
     
   </div>

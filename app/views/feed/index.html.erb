@@ -4,7 +4,10 @@
   <% @posts.each do |post| %>
   <ul>
     <li><%= post.content %></li>
-    <%#= post.user.username %>
+    <% (0...post.images.count).each do |image| %>    
+        <li><%= image_tag(post.images[image], class: "image-style") %></li>
+      <% end %>
+    by
     <%= link_to post.user.username, main_app.profile_path(post.user.username) %>
     <%= link_to "#{time_ago_in_words post.created_at} ago", main_app.post_path(post) %>
   </ul>

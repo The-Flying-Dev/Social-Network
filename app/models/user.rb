@@ -44,6 +44,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy  
   has_many :image_posts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_one_attached :image 
 
   has_many :follower_relationships, foreign_key: :following_id, class_name: 'Follow'
   has_many :followers, through: :follower_relationships, source: :follower 
@@ -74,7 +75,8 @@ class User < ApplicationRecord
    validates :email, presence: true, uniqueness: true, 
              format: { with: URI::MailTo::EMAIL_REGEXP, message: "must be a valid email address" }
    
-  
+   validate :image_type
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -129,7 +131,7 @@ class User < ApplicationRecord
   #prevents users from creating usernames of email addresses that already exits in the DB
   def validate_username
     if User.where(email: username).exists?
-      errors.add(:username, :invalid)
+      errors.add(:username, "This Username is not available")
     end
   end
 
@@ -151,6 +153,13 @@ class User < ApplicationRecord
 
     def name_uppercase
       self.name = name.capitalize
+    end
+
+    def image_type 
+        if !image.content_type.in?(%('image/jpeg image/png image/gif'))
+          errors.add(:image, 'File is not JPEF or PNG')
+        end
+      
     end
 
 end

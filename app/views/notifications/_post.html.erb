@@ -1,12 +1,10 @@
-<br /> 
-
-<p><%= link_to notification.actor.username, main_app.profile_path(notification.actor.username) %>     
-    has commented in:  
-<%= link_to notification.second_target.content, main_app.post_path(notification.second_target) %>
 
 
+    <%= link_to notification.actor.username, main_app.profile_path(notification.actor) %> 
+    has commented on:
+  
+    <%= link_to notification.second_target.content, main_app.post_path(notification.user, notification.second_target) %>
 
-<br/>
-saying "
-<%= notification.target.content %> "
-</p>
+    saying "
+    <%= notification.target.content %>"
+

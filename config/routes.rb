@@ -1,21 +1,15 @@
-Rails.application.routes.draw do
-  
-  
-  
+Rails.application.routes.draw do 
+
   mount Notifications::Engine => "/notifications"
+
   devise_for :users
-
   resources :comments 
-  resources :image_posts 
-
   resources :posts do 
     member do 
       put 'like', to: 'posts#upvote'
       put 'dislike', to: 'posts#downvote'
     end
   end
-
-
   
   
   get 'feed/index'

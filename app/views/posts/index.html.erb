@@ -2,21 +2,15 @@
   
   <h4>Posts</h4>
 
-
-
-  <p><%# link_to "New Text Post", new_post_path, class: "btn btn-dedault" %></p>
-  <p><%# link_to "New Image Post", new_image_post_path, class: "btn btn-dedault" %></p>
-
   <% @posts.each do |post| %>
     <ul>
       <li><%= post.content %></li>
-      <li><%= "user is " + post.user.username %></li>
 
-      <%# if post.images.attached? do |image| %>
-        <li><%#= image_tag post.image, style: "width: 150px; height: 150px" %></li>
-      <%# end %> 
-      <%# link_to post.user.username, profile_path(post.user.username) %>
-      <%#= link_to "#{time_ago_in_words post.created_at} ago", post_path(post) %>
+      <% (0...post.images.count).each do |image| %>    
+        <li><% image_tag(post.images[image], class: "image-style") %></li>
+      <% end %>
+
+      <li><%= link_to post.user.username, main_app.profile_path(post.user.username) %></li>
     </ul>
 
   <% end %>
