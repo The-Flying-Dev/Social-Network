@@ -2,54 +2,36 @@
 
 
 <% if @user == current_user %>
-  <%= link_to "Edit Profile", main_app.edit_profile_path(@user.username), class: "btn btn-default" %> 
-
+  <%= link_to "Edit Profile", main_app.edit_profile_path(@user.username), class: "btn btn-default" %>
 <% elsif current_user_is_following(current_user.id, @user.id) %>
   <%= link_to "Unfollow", main_app.unfollow_user_path, method: :post, class: "btn btn-success" %>
-
 <% else %> 
   <%= link_to "Follow", main_app.follow_user_path, method: :post, class: "btn btn-warning" %>
 <% end %>
 
-
-
-
-
-
-
-
-
  <%# will_paginate @posts %>
 
- <div class="all_posts">
-  <div class="panel-heading">    
-    
-  </div>
+<div class="all_posts">
 
   <div class="panel-body">
-    <p><em></em></p>  
+
 
     <%= sanitize @user.username %>
     <%= sanitize @user.bio %>
-    <p>Profile pic</p>
 
+    <p>Profile pic</p>
     
-    <%= image_tag(@user.image, class: "image-style" ) if @user.image.attached? %>
-    <br />
+    <p><%= image_tag(@user.image, class: "image-style" ) if @user.image.attached? %></p>    
 
     <% @posts.each do |post| %>
-  <ul>
-    <li><%= post.content %></li>
-    <%= post.user.username %>
-    <%# link_to post.user.username, profile_path(post.user.username) %>
-    <%#= link_to "#{time_ago_in_words post.created_at} ago", post_path(post) %>
-  </ul>
 
-  <% end %>
-    
+             
+      <p><%= link_to post.content, main_app.post_path(post) %></p>
 
-    
+      <% (0...post.images.count).each do |image| %>    
+        <p><%= link_to image_tag(post.images[image], class: "image-style"), main_app.post_path(post) if post.images.attached? %></p>
+      <% end %>  
 
-    
+    <% end %>    
   </div>
 </div>

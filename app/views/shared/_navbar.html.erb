@@ -17,18 +17,13 @@
           <a class="nav-link"><%= link_to "Logout", main_app.destroy_user_session_path, method: :delete, class: "btn btn-dark" %></a>
           <a class="nav-link"><%= link_to "The Social Feed", main_app.root_path, class: "btn btn-success" %></a>
           <a class="nav-link"><%= link_to "#{current_user.username}", main_app.profile_path(current_user.username), class: "btn btn-dark" %> </a>
-          <a class="nav-link"><%= render 'shared/search' %></a>
-
-          
-          <a class="nav-link"><%= link_to pluralize(Notification.unread_count(current_user), 'Notification'), notifications_path %></a>
-         
+          <a class="nav-link"><%= render 'shared/search' %></a>          
+          <a class="nav-link"><%= link_to pluralize(Notification.unread_count(current_user), 'Notification'), notifications_path %></a>        
 
         <% else %>
 
           <a class="nav-link"><%= link_to "Login", main_app.new_user_session_path, class: "btn btn-dark" %></a>
-          <a class="nav-link"><%= link_to "Create Account", main_app.new_user_registration_path, class: "btn btn-dark" %></a>
-
-        
+          <a class="nav-link"><%= link_to "Create Account", main_app.new_user_registration_path, class: "btn btn-dark" %></a>       
 
         <% end %>
       </div>

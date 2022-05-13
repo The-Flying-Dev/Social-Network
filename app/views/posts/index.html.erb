@@ -7,7 +7,7 @@
       <li><%= post.content %></li>
 
       <% (0...post.images.count).each do |image| %>    
-        <li><% image_tag(post.images[image], class: "image-style") %></li>
+        <li><%= image_tag(post.images[image], class: "image-style") if post.images.attached? %></li>
       <% end %>
 
       <li><%= link_to post.user.username, main_app.profile_path(post.user.username) %></li>

@@ -25,22 +25,15 @@ class User < ApplicationRecord
 
   #hook method
   before_save :name_uppercase
+  acts_as_voter
 
   #login virtual attribute, setter
-  attr_writer :login 
+  attr_writer :login   
 
-  acts_as_voter
-  
-
-  #associations
-
-  # Members/followers and following   
-  #current user for following other users
-  #dependent: :destroy, prevents orphan records by destroying any associated records if the user is destroyed
-
-
- 
+  #associations  
+  #dependent: :destroy, prevents orphan records by destroying any associated records if the user is destroyed 
   #dependent: :destroy, prevents orphan records
+
   has_many :posts, dependent: :destroy  
   has_many :image_posts, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -60,12 +53,7 @@ class User < ApplicationRecord
   def unfollow(user_id)
     following_relationships.find_by(following_id: user_id).destroy
   end
-
-
  
-
-
- #######################################################################################################################
 
    #validations
    validate :validate_username #custom method
@@ -112,8 +100,7 @@ class User < ApplicationRecord
     end
 
     recoverable
-  end
-  
+  end  
 
   def self.find_recoverable_or_init_with_errors(conditions)
     conditions = conditions.dup 
@@ -124,7 +111,6 @@ class User < ApplicationRecord
       recoverable = new(login: login)
       recoverable.errors.add(:login, login.present? ? :not_found : :blank)
     end
-
     recoverable
   end
 
@@ -135,7 +121,6 @@ class User < ApplicationRecord
     end
   end
 
-
   # To search for users
   def self.search(term)
     if term 
@@ -144,22 +129,18 @@ class User < ApplicationRecord
       where('username LIKE?',"%#{term}%")
     end
   end
-
-
-
-
   
-    private 
+  private 
 
-    def name_uppercase
-      self.name = name.capitalize
-    end
+  def name_uppercase
+    self.name = name.capitalize
+  end
 
-    def image_type 
-        if !image.content_type.in?(%('image/jpeg image/png image/gif'))
-          errors.add(:image, 'File is not JPEF or PNG')
-        end
-      
-    end
+  def image_type 
+      if !image.content_type.in?(%('image/jpeg image/png image/gif'))
+        errors.add(:image, 'File is not JPEF or PNG')
+      end
+    
+  end
 
 end

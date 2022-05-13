@@ -21,26 +21,21 @@
 #  index_posts_on_user_id  (user_id)
 #
 class Post < ApplicationRecord
-  acts_as_votable
- 
+  acts_as_votable 
   
   #associations
   belongs_to :user
   has_many :comments, dependent: :destroy
-  has_many_attached :images  
-  
+  has_many_attached :images    
 
   #validations
   validates :user_id, presence: true   
   validates :content, length: { minimum: 1 }, allow_blank: true 
-  validate :image_type
-  
+  validate :image_type  
 
   scope :of_followed_users, -> (following_users) { where user_id: following_users } 
 
-  private  
-
-
+  private 
 
 
   def image_type 
