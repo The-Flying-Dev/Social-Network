@@ -1,0 +1,18 @@
+footer {
+  background-color: #0B0C10;
+  font-family: 'Roboto', sans-serif;
+  height: 8vh;
+  display: flex;
+  justify-content: center; 
+
+  .btn{  
+    text-decoration-line:none;     
+    color: #66FCF1; 
+    margin-top: 1vh;
+  }
+
+  .btn:hover, .btn:focus, .btn:visited, .btn:active {
+    color: #66FCF1;
+  } 
+  
+}

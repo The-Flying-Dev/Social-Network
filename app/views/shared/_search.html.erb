@@ -1,7 +1,7 @@
 <!-- Search field for users -->
 
-<%= form_tag(main_app.profiles_index_path, method: :get) do %>
-  <%= text_field_tag :term, params[:term], id: "field" %>
+<%= form_tag(main_app.profiles_index_path, method: :get, class: "form_class") do %>
+  <%= text_field_tag :term, params[:term], id: "field", required: true %>
   <%= submit_tag 'Search' %>
 <% end %>
 

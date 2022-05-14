@@ -1,32 +1,38 @@
-<h2>Log in</h2>
+<div class="devise-form">
+  
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
- 
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <h2>Log in</h2>
 
-   <!-- custom field for login -->
+    <!-- custom field for login -->
 
-   <div class="field">
-    <%= f.label :login, "Username / Email" %><br />
-    <%= f.text_field :login, autofocus: true %>
-  </div>
+    <div class="field" id="devise-field">
+      <%= f.label :login, "Username / Email" %><br />
+      <%= f.text_field :login, autofocus: true, class: "devise" %>
+    </div>
 
-  <!-------------------------------------------------->
+    <!-------------------------------------------------->
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+    <div class="field" id="devise-field">
+      <%= f.label :password %><br />
+      <%= f.password_field :password, autocomplete: "current-password", class: "devise" %>
+    </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+    <% if devise_mapping.rememberable? %>
+      <div class="field">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit "Log in", class:"btn btn-light" %> <br /><br /><br />
+      <%= link_to "Sign up", new_registration_path(resource_name), class:"btn btn-light" %>
+      <%= link_to "Forgot your password?", new_password_path(resource_name), class:"btn btn-light" %>
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
+  
 
-<%= render "devise/shared/links" %>
+</div>
+

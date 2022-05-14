@@ -12,15 +12,24 @@
 
   .navbar a:hover, a:focus, a:visited, a:active {
     color: #66FCF1;
-  }   
+  } 
 
   .btn {    
     color: #66FCF1;
   }
 
-  .search {
+  .form_class {
     margin-left: 10vw;
+    input[type="submit"] {
+      background-color: #0B0C10;
+      border-radius: 0.354em;
+      border: solid thin #66FCF1;
+      color: #66FCF1;     
+      
+    }
+    textarea:focus, input:focus{
+      outline: none;
+    }
   }
-
   
 }

@@ -35,3 +35,30 @@
   margin-left: 20vw;
   margin-top: 10vh;
 }
+
+.devise-form {
+
+  display: flex;
+  justify-content: center; 
+  background-image: url(background.jpg);
+  background-size: cover; 
+  height: 90vh;
+  
+  h2 {
+    margin-top: 8vh;
+    color: #C5C6C7;
+  }
+
+  #devise-field {
+    margin-bottom: 2vh;
+    font-family: 'Roboto', sans-serif;    
+
+    .devise {
+      width: 20vw;
+      border-radius: 8px; 
+      border: solid 3px #1F2833;  
+      resize: none;
+      outline: none;
+    }
+  }
+}
