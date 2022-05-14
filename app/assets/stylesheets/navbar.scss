@@ -1,0 +1,26 @@
+.navbar {
+  background-color: #0B0C10;
+  font-family: 'Roboto', sans-serif;
+  
+  .navbar-toggler{
+    background-color: #66FCF1;
+  }
+  .navbar-nav a{    
+    text-decoration-line:none;
+    padding: 1vh 1vw;    
+  }
+
+  .navbar a:hover, a:focus, a:visited, a:active {
+    color: #66FCF1;
+  }   
+
+  .btn {    
+    color: #66FCF1;
+  }
+
+  .search {
+    margin-left: 10vw;
+  }
+
+  
+}
