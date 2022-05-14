@@ -1,8 +1,104 @@
 // Place all the styles related to the Posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.page-header {
+  margin-top: 5vh;
+}
 
 .image-style {
   width: 100px;
   height: 100px;
 }
+
+.image-show-page {
+  width: 250px;
+  height: 250px;
+  margin: 5vh 3vw;
+}
+
+.posts {
+  margin: 5vh 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: larger;
+
+  .userlink {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    text-decoration-line:none;
+    color: #116466
+  }
+}
+
+.post-options {
+  margin: 5vh 0;
+}
+
+
+
+.comments {
+  h3 {
+    font-family: 'Roboto', sans-serif;
+  }
+  margin-top: 10vh;
+}
+
+h5 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;  
+  text-decoration: underline;
+}
+
+.comment-form {
+  margin: 10vh 0;
+
+  #comment-field {
+    margin-bottom: 2vh;
+    font-family: 'Roboto', sans-serif;    
+
+    .comment {
+      width: 30vw;
+      border-radius: 8px; 
+      border: solid 3px #1F2833;  
+      resize: none;
+      outline: none;
+    }
+  }
+
+  .btn {    
+    color: #CFC6C7;
+    background-color: #1F2833;
+    font-family: 'Roboto', sans-serif; 
+  }
+
+  .btn:hover, .btn:focus, .btn:visited, .btn:active {
+    color: #CFC6C7;
+  } 
+
+}
+
+.post-form {
+  margin-top: 15vh;
+  display: flex;
+  justify-content: center;   
+  height: 90vh;
+
+  #post-field {
+    margin-bottom: 2vh;
+    font-family: 'Roboto', sans-serif; 
+    flex-direction: column;   
+
+    .post-content {
+      width: 30vw;
+      height: 15vh;
+      border-radius: 8px; 
+      border: solid 3px #1F2833;  
+      resize: none;
+      outline: none;
+    }
+
+    .image-content {
+      margin: 1vh 0;
+    }
+  }
+}
+

@@ -1,9 +1,14 @@
+<div class="comment-partial">
 
+  <p><em><%= link_to comment.user.username, main_app.profile_path(comment.user.username), class: "userlink" %> commented: </em></p>
+  <p class="comment-content"><%= comment.content %></p>
 
-  <p><em><%= comment.user.name %> commented: </em></p>
-  <p><%= comment.content %></p>
+  <hr style="height:5px">
 
   <% if @moderate %>
-    <%= link_to 'Delete comment', main_app.comment_path(comment), method: :delete, class: "btn btn-default" %>
+    <%= link_to 'Delete comment', main_app.comment_path(comment), method: :delete, class: "btn btn-dark" %>
   <% end %>
   
+</div>
+
+

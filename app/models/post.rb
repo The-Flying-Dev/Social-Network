@@ -30,12 +30,13 @@ class Post < ApplicationRecord
 
   #validations
   validates :user_id, presence: true   
-  validates :content, length: { minimum: 1 }, allow_blank: true 
+  validates :content, length: { minimum: 1 }
   validate :image_type  
+  
 
   scope :of_followed_users, -> (following_users) { where user_id: following_users } 
 
-  private 
+  private  
 
 
   def image_type 

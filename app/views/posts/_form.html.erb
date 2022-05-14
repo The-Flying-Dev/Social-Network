@@ -1,17 +1,25 @@
-<%= form_for @post do | f | %>
+<div class="post-form">
+  <%= form_for @post do | f | %>
 
 
-  <div class="form-group">
-    <%= f.label :content %>
-    <%= f.text_field :content, class: "form-control" %>    
+  <div class="field" id="post-field">
+    <%#= f.label :content %> <br />
+    <%= f.text_field :content, placeholder: "Say something. . .", required: true, class: "post-content" %>    
   </div>
 
-  <div class="form-group"> 
-    <%= f.label :images %>   
-    <%= f.file_field :images, multiple: true %>    
+  <div class="field" id="post-field"> 
+    <%= f.label :images %>   <br />
+    <%= f.file_field :images, multiple: true, class: "image-content" %><br />
+    <%= f.file_field :images, multiple: true, class: "image-content" %><br />
+    <%= f.file_field :images, multiple: true, class: "image-content" %><br />
+    <%= f.file_field :images, multiple: true, class: "image-content" %><br />
+    <%= f.file_field :images, multiple: true, class: "image-content" %><br />
   </div>
 
-  <%= f.submit class: "btn btn-primary" %>
-  <%= link_to 'Cancel', :back, class: "bnt btn-primary" %>
+  <%= f.submit class: "btn btn-dark" %>
+  <%= link_to 'Go Back', :back, class:"btn btn-light" %>
 
 <% end %>
+  
+</div>
+

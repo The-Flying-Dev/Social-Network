@@ -28,7 +28,7 @@
 }
 
 .page-header {
-  margin-left: 20vw;
+  margin-left: 15vw;
 }
 
 .all_posts {
@@ -61,4 +61,17 @@
       outline: none;
     }
   }
+}
+
+.notifications {
+
+  .heading {
+    margin: 5vh 0;    
+  }
+  
+  display: flex;
+  justify-content: center; 
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  
 }

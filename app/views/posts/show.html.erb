@@ -1,62 +1,73 @@
-<div class="page-header">
-  <h4>Post</h4>
+<div class="page-header">  
+ 
+  <div class="posts">
+    <%= @post.content %>     
 
-
-  <ul>
-    <% if @post.content.length > 0 %>
-
-      <li><%= @post.content %></li>
-          
-    <% end %>
-
-    <% if @post.images.length > 0 %>
-  
+    <% if @post.images.length > 0 %>  
       <% (0...@post.images.count).each do |image| %>   
-      <li><%= image_tag(@post.images[image], class: "image-style" ) %></li> 
-  
+        <%= image_tag(@post.images[image], class: "image-show-page" ) %>  
       <% end %>
     <% end %>
+    <br />
+    by <%= link_to @post.user.username, main_app.profile_path(@post.user.username), class: "userlink" %>
 
-    <li>by <%= link_to @post.user.username, main_app.profile_path(@post.user.username) %></li>
-    </ul>
+  </div>
+      
 
- 
-    <%= link_to main_app.like_post_path(@post), class: "btn btn-outline-dark",method: :put  do %>
+    <br />
+    
+    
+
+    <!--Options for each post-->
+    <div class="post-options">
+
+      <%= link_to main_app.like_post_path(@post), class: "btn btn-outline-dark",method: :put  do %>
         <i class="fa-solid fa-heart"></i> <%= @post.get_upvotes.size %>       
       <% end %>
      
-    <%= link_to main_app.dislike_post_path(@post), class: "btn btn-outline-dark", method: :put do %>
-      <i class="fa-solid fa-heart-crack"></i> <%= @post.get_downvotes.size %>      
-    <% end %>
+      <%= link_to main_app.dislike_post_path(@post), class: "btn btn-outline-dark", method: :put do %>
+        <i class="fa-solid fa-heart-crack"></i> <%= @post.get_downvotes.size %>      
+      <% end %>
+      <br /><br />
+
+      <% if @post.user == current_user %>
+        <%= link_to "Edit", main_app.edit_post_path(@post), class: "btn btn-dark" %>
+        <%= link_to "Remove Post", main_app.post_path(@post), method: :delete, class: "btn btn-dark",
+          data: { confirm: "Are you sure you want to remove this post?" } %>
+      <% end %>
+
+      <%= link_to 'Go Back', :back, class:"btn btn-dark" %>
+
+    </div>
+ 
+    
 
 
-  <% if @post.user == current_user %>
-    <%= link_to "Edit", main_app.edit_post_path(@post), class: "btn btn-default" %>
-    <%= link_to "Remove Post", main_app.post_path(@post), method: :delete,
-      data: { confirm: "Are you sure you want to remove this post?" }, class: "btn btn-default" %>
-  <% end %>
-
-
-  <h3>Comments</h3>
-
+  <!--All Comments-->
+  <div class="comments">
+    <h3>Comments</h3>
     <%= render @post.comments %> 
+  </div>
+
+  
 
   <!-- form to create comment -->
 
-  <h4>New Comment</h4>
+  <div class="comment-form">
+    <h5>Add Comment</h5>
 
-  <%= form_for @post.comments.build do | f | %>
+    <%= form_for @post.comments.build do | f | %>  
 
-    <div class="form-group">
-      <%= f.label :content %><br />
-      <%= f.text_area :content, class: "form-control", required: true  %>
-    </div>
+      <div class="form-group" id="comment-field">
+        <%#= f.label :content %><br />
+        <%= f.text_area :content, class: "form-control", required: true, class: "comment"  %>
+      </div>
 
-    <%= f.hidden_field :post_id %>
-    <%= f.submit class: "btn btn-primary" %>
+      <%= f.hidden_field :post_id %>
+      <%= f.submit "post comment", class: "cmtbtn" %>
 
-  <% end %>
-  
+    <% end %>
+  </div>
 </div>
 
-<%= link_to "Home", main_app.posts_path, class: "btn btn-default" %>
+<%#= link_to "Home", main_app.posts_path, class: "btn btn-default" %>
