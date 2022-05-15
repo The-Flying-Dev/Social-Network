@@ -1,3 +1,37 @@
 // Place all the styles related to the feed controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.feed_index_posts {
+  margin-left: 11vw; 
+  margin-bottom: 15vh; 
+  width: 80vw;
+
+  #heading {
+    margin: 5vh 0;
+  } 
+
+  .feed-content a {
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 3.5vh;
+    color:#123C69; 
+  }
+
+  .user-link-content a {
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 3vh;
+    color:#1F2833;
+    font-weight: 600;
+  }
+    .feed-images {
+      height: 175px;
+      width: 175px;
+      margin: 3vh 3vw;
+      border-radius: 50%;    
+    }
+
+    #hr {
+      margin-bottom: 8vh;
+    }
+}

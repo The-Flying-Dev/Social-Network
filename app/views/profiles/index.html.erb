@@ -1,23 +1,24 @@
-<div class="panel-body">
-
-  <% if @users.length > 0 %>
-    <% @users.each do |user| %>
-      <ul>
-        <li><%= image_tag(user.image, class: "image-style" ) if user.image.attached? %>
-          <%= link_to "#{user.username}", main_app.profile_path(user.username) %>
-        </li>
-      </ul> 
-    <% end %> 
-
-  <% else %>
-
-   <h3>No results found for <%= "#{params[:term]}" %></h3>
-   <p>try again ?</p>
-   <%= render '/shared/search' %>
-   
-  <% end %>
+<div class="profile-search-pg">
+  <div class="panel-body">
+    <% if @users.length > 0 %>
+      <% @users.each do |user| %> 
+      
+        <%= image_tag(user.image, class: "users-img" ) if user.image.attached? %>
+        <%= link_to "#{user.username}", main_app.profile_path(user.username) %>
+        
+        
+               
+      <% end %> 
   
+    <% else %>
+     <h3>No results found for <%= "#{params[:term]}" %></h3>
+     <p>try again ?</p>
+     <%= render '/shared/search' %>
+     
+    <% end %>  
+  </div>
 </div>
+
 
 <script>
   document.getElementById("field").value = "";

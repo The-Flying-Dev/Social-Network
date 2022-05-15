@@ -1,32 +1,27 @@
 <div class="feed_index_posts">
-  <h4>Scroll to see more</h4>
+  <h4 id="heading">Scroll down to see more</h4>
   <br />
 
-
-
-  <% @posts.each do |post| %>
-  
-    
-
-    <div class="feed-content">
-      <%= link_to post.user.username, main_app.profile_path(post.user.username) %> Posted
-      <p><%= post.content %></p>
-      <%= link_to "#{time_ago_in_words post.created_at} ago", main_app.post_path(post) %>
-  
-
-    
-
+  <% @posts.each do |post| %>    
+      <p class="user-link-content"><%= link_to post.user.username, main_app.profile_path(post.user.username) %> Posted</p>
+      <p class="feed-content"><%= post.content %></p> <br /> 
     
       <% (0...post.images.count).each do |image| %>    
-        <p><%= image_tag(post.images[image], class: "feed-style") if post.images.attached? %></p>
+        <%= image_tag(post.images[image], class: "feed-images") if post.images.attached? %>
       <% end %>
-    </div>
 
-    
-    
-    
-  
-
+      <p class="feed-content"><%#= link_to post.content, main_app.post_path(post) %></p> 
+      <p class="feed-content"><%= link_to "#{time_ago_in_words post.created_at} ago", main_app.post_path(post) %></p>     
+      <hr id="hr">
   <% end %>
 
 </div>
+
+
+
+ 
+  
+
+ 
+  
+

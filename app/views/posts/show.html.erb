@@ -1,7 +1,8 @@
 <div class="page-header">  
  
   <div class="posts">
-    <%= @post.content %>     
+    <%= @post.content %> 
+    <br />    
 
     <% if @post.images.length > 0 %>  
       <% (0...@post.images.count).each do |image| %>   

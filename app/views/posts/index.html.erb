@@ -1,20 +1,22 @@
-<div class="all_posts">
-  
-  <h4>Scroll to see more</h4>
+<div class="feed_index_posts">
+  <h4 id="heading">Scroll down to see more</h4>
+  <br />
 
-  <% @posts.each do |post| %>
-    <ul>
-      <li><%= post.content %></li>
-
+  <% @posts.each do |post| %>    
+      <p class="user-link-content"><%= link_to post.user.username, main_app.profile_path(post.user.username) %> Posted</p>
+      <p class="feed-content"><%= post.content %></p> <br /> 
+    
       <% (0...post.images.count).each do |image| %>    
-        <li><%= image_tag(post.images[image], class: "image-style") if post.images.attached? %></li>
+        <%= image_tag(post.images[image], class: "feed-images") if post.images.attached? %>
       <% end %>
 
-      <li><%= link_to post.user.username, main_app.profile_path(post.user.username) %></li>
-    </ul>
-
+      <p class="feed-content"><%= link_to "#{time_ago_in_words post.created_at} ago", main_app.post_path(post) %></p>  
+        
+      <hr>
   <% end %>
+
+</div>
+
 
 
  <%# will_paginate @posts %>
-</div>
