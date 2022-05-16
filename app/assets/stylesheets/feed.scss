@@ -2,12 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .feed_index_posts {
-  margin-left: 11vw; 
+  margin-left: 8vw; 
   margin-bottom: 15vh; 
-  width: 80vw;
+  width: 80vw;  
 
   #heading {
-    margin: 5vh 0;
+    margin: 10vh 0;
   } 
 
   .feed-content a {
@@ -35,3 +35,4 @@
       margin-bottom: 8vh;
     }
 }
+

@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container-fluid">
-    <a><%= link_to "Social Feed", main_app.feed_index_path, class: "navbtn" %></a>
+    <a><%= link_to "Social Feed", main_app.feed_index_path, class: "navbtn", id:"logo" %></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
       data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
       aria-expanded="false" aria-label="Toggle navigation">
@@ -16,10 +16,11 @@
           <a><%= link_to "Add Post", main_app.new_post_path, class: "navbtn" %></a>          
           <a><%= link_to "Logout", main_app.destroy_user_session_path, method: :delete, class: "navbtn" %></a>
           <a><%= link_to "My Feed", main_app.root_path, class: "navbtn" %></a>
-          <a><%= link_to "My Profile", main_app.profile_path(current_user.username), class: "navbtn" %> </a>                   
+          <a><%= link_to "My Profile --- #{current_user.username}", main_app.profile_path(current_user.username), class: "navbtn" %> </a>                   
           <a><%= link_to pluralize(Notification.unread_count(current_user), 'Notification'), notifications_path, class: "navbtn" %></a>           
-          <a class="search"><%= render 'shared/search' %></a>      
-
+          <a class="search"><%= render 'shared/search' %></a>  
+       
+         
         <% else %>
 
           <a><%= link_to "Login", main_app.new_user_session_path, class: "navbtn" %></a>

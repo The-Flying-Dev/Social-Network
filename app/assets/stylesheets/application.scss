@@ -19,7 +19,7 @@
  }
  
 .panel-body {
-  margin: 7vh 7vw;
+  margin: 7vh 3vw;
 }
 
 .icon {
@@ -31,9 +31,8 @@
   margin-left: 15vw;
 }
 
-.all_posts {
-  margin-left: 20vw;
-  margin-top: 10vh;
+.all_posts {    
+  background-color: #D1E8E2;
 }
 
 .devise-form {
@@ -74,4 +73,9 @@
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
   
+}
+
+.pagination {
+  margin-left: 10vh;
+  margin-bottom: 5vh;
 }
