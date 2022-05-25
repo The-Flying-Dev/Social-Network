@@ -2,13 +2,15 @@ class PostsController < ApplicationController
   #before_action :authenticate_user! 
    before_action :set_post, only: [:upvote, :downvote]
    before_action :post_owner, only: [:edit, :update, :destroy]
+   #before_action :tag_post, only: [:index, :show, :new, :create, :edit, :update, :destroy]
  
   def index 
-    if current_user      
+    if current_user     
        @posts = Post.of_followed_users(current_user.following).
-      order("created_at DESC").paginate(page: params[:page], per_page: 5)      
+       order("created_at DESC").paginate(page: params[:page], per_page: 5) 
+    
     else   
-      redirect_to main_app.feed_index_path 
+      redirect_to main_app.public_path 
     end 
     #@posts = Post.includes(:user).where(user_id: user_ids) #eager loading reduces N + 1 Queries
     #  .paginate(page: params[:page], per_page: 5)
@@ -80,6 +82,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+ 
   def post_owner 
     @post = Post.find(params[:id])
     unless current_user == @post.user 
@@ -89,7 +92,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:content, images: [])
+    params.require(:post).permit(:content, :tag_list, images: [])
   end
 
 

@@ -11,9 +11,10 @@ Rails.application.routes.draw do
       put 'dislike', to: 'posts#downvote'
     end
   end
+  resources :tags
   
   
-  get 'feed/index'
+  get 'public', to: 'feed#index', as: :public
   get 'profiles/index'
   get ':username', to: 'profiles#show', as: :profile
   get ':username/edit', to: 'profiles#edit', as: :edit_profile  

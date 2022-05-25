@@ -4,7 +4,9 @@
 
   <div class="field" id="post-field">
     <%#= f.label :content %> <br />
-    <%= f.text_field :content, placeholder: "Say something. . .", required: true, class: "post-content" %>    
+    <%= f.text_field :content, placeholder: "Say something. . .", required: true, class: "post-content" %> <br /><br />
+    <%= f.label :tag_list %><br />
+    <%= f.text_field :tag_list %>
   </div>
 
   <div class="field" id="post-field"> 

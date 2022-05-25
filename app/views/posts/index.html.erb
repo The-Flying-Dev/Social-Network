@@ -4,7 +4,9 @@
 
   <% @posts.each do |post| %>    
       <p class="user-link-content"><%= link_to post.user.username, main_app.profile_path(post.user.username) %> Posted</p>
-      <p class="feed-content"><%= post.content %></p> <br /> 
+      <p class="feed-content"><%= post.content %></p> 
+      
+        <br /> 
     
       <% (0...post.images.count).each do |image| %>    
         <%= image_tag(post.images[image], class: "feed-images") if post.images.attached? %>

@@ -11,7 +11,6 @@
 #  cached_weighted_score   :integer          default(0)
 #  cached_weighted_total   :integer          default(0)
 #  content                 :text
-#  type                    :string
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  user_id                 :integer
@@ -26,7 +25,24 @@ class Post < ApplicationRecord
   #associations
   belongs_to :user
   has_many :comments, dependent: :destroy
-  has_many_attached :images    
+  has_many_attached :images  
+
+
+  has_many :taggings
+  has_many :tags, through: :taggings
+  
+
+  def tag_list=(tags_string)
+    tag_names = tags_string.split(",").collect{|s| s.strip.downcase}.uniq
+    new_or_found_tags = tag_names.collect { |name| Tag.find_or_create_by(name: name) }
+    self.tags = new_or_found_tags
+  end
+
+  def tag_list
+    self.tags.collect do |tag|
+      tag.name
+    end.join(", ")
+  end
 
   #validations
   validates :user_id, presence: true   
