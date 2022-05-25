@@ -2,6 +2,6 @@
 
 <ul>
   <% @tag.posts.each do |post| %>
-    <li><%= link_to post.content, post_path(post) %></li>
+    <li><%= link_to post.content, main_app.post_path(post) %></li>
   <% end %>
 </ul>
